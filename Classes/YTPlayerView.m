@@ -909,6 +909,12 @@ createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration
   WKWebViewConfiguration *webViewConfiguration = [[WKWebViewConfiguration alloc] init];
   webViewConfiguration.allowsInlineMediaPlayback = YES;
   webViewConfiguration.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeNone;
+
+  YTWebViewConfigurationModifier block = self.configurationModifier;
+  if (block != nil) {
+    block(webViewConfiguration);
+  }
+
   WKWebView *webView = [[WKWebView alloc] initWithFrame:self.bounds
                                           configuration:webViewConfiguration];
   webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);

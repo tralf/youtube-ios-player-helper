@@ -62,6 +62,7 @@ typedef void (^YTURLCompletionHandler)(NSURL *_Nullable result, NSError *_Nullab
 typedef void (^YTPlayerStateCompletionHandler)(YTPlayerState result, NSError *_Nullable error);
 typedef void (^YTPlaybackQualityCompletionHandler)(YTPlaybackQuality result,
                                                    NSError *_Nullable error);
+typedef void (^YTWebViewConfigurationModifier)(WKWebViewConfiguration *_Nonnull config);
 
 /**
  * A delegate for ViewControllers to respond to YouTube player events outside
@@ -156,6 +157,8 @@ typedef void (^YTPlaybackQualityCompletionHandler)(YTPlaybackQuality result,
 
 /** A delegate to be notified on playback events. */
 @property(nonatomic, weak, nullable) id<YTPlayerViewDelegate> delegate;
+
+@property (nonatomic, copy, nullable) YTWebViewConfigurationModifier configurationModifier;
 
 /**
  * This method loads the player with the given video ID.
